@@ -8,6 +8,7 @@
 #include <ios>
 using namespace std;
 
+// Function to generate a random password of given length
 string genPass(int length) {
     const string charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_";
     string pass;
@@ -20,6 +21,7 @@ string genPass(int length) {
     return pass;
 }
 
+// Function to store username and encrypted password in a file
 void storePass(const string& filename, const string& uname, const string& pass) {
     ofstream file(filename, ios::app);
     if (!file.is_open()) {
@@ -31,6 +33,7 @@ void storePass(const string& filename, const string& uname, const string& pass) 
     file.close();
 }
 
+// Function to retrieve encrypted password from file based on username
 string retrievePass(const string& filename, const string& uname) {
     ifstream file(filename);
     if (!file.is_open()) {
@@ -51,6 +54,7 @@ string retrievePass(const string& filename, const string& uname) {
     return "";
 }
 
+// Function to encrypt password using rail fence cipher
 string encryptPass(const string& pass, int rails) {
     string ciphertext;
     string* fence = new string[rails];
@@ -71,6 +75,7 @@ string encryptPass(const string& pass, int rails) {
     return ciphertext;
 }
 
+// Function to decrypt password using rail fence cipher
 string decryptPass(const string& ciphertext, int rails) {
     int length = ciphertext.length();
     string plaintext(length, ' ');
@@ -95,6 +100,7 @@ string decryptPass(const string& ciphertext, int rails) {
     return plaintext;
 }
 
+// Function to get integer input from user
 int getNum(string& cue) {
     int choice;
     while (true) {
@@ -119,6 +125,7 @@ int main() {
     string auth;
     repeat = true;
 
+    // Prompting for admin password
     cout << "Enter Admin Pass: ";
     cin >> auth;
 
@@ -126,7 +133,9 @@ int main() {
         x = tolower(x); 
     } 
 
+    // Authenticating admin access
     if (auth == "admin"){
+        // Main menu loop
         while(choice != 4){
             cout << "Welcome to the password manager!" << endl << "Would you like to: " << endl;
             cout << "1. Generate a new password" << endl;
@@ -137,6 +146,7 @@ int main() {
             choice = getNum(cue);
 
             switch (choice) {
+                // Generating a new password
                 case 1: {
                     int length;
                     cue = "Enter password length: ";
@@ -149,6 +159,7 @@ int main() {
                     }
                     break;
                 }
+                // Storing an existing password
                 case 2: {
                     string username, password, storedPass;
                     cout << "Enter username: ";
@@ -169,6 +180,7 @@ int main() {
                     }
                     break;
                 }
+                // Retrieving a password
                 case 3: {
                     string username, storedPass;
                     cout << "Enter username: ";
@@ -182,10 +194,12 @@ int main() {
                     }
                     break;
                 }
+                // Exiting the program
                 case 4: {
                     cout << "Goodbye!";
                     break;
                 }
+                // Handling invalid choices
                 default:
                     cout << "Invalid choice." << endl;
                     choice = 4;
