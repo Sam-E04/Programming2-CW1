@@ -145,7 +145,7 @@ int main() {
                         string generatedPassword = genPass(length);
                         cout << "Generated Password: " << generatedPassword << endl;
                     } else {
-                        cout << "Password length too short" << endl;
+                        cout << "Password invalid" << endl;
                     }
                     break;
                 }
