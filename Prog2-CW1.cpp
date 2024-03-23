@@ -95,7 +95,7 @@ string decryptPass(const string& ciphertext, int rails) {
     return plaintext;
 }
 
-int getChoice(string& cue) {
+int getNum(string& cue) {
     int choice;
     while (true) {
         cout << cue;
@@ -134,13 +134,13 @@ int main() {
             cout << "3. Retrieve a password from the database" << endl;
             cout << "4. Exit the program" << endl;
             string cue = "Enter choice: ";
-            choice = getChoice(cue);
+            choice = getNum(cue);
 
             switch (choice) {
                 case 1: {
                     int length;
-                    cout << "Enter password length: ";
-                    cin >> length;
+                    cue = "Enter password length: ";
+                    length = getNum(cue);
                     if (length >= 8){
                         string generatedPassword = genPass(length);
                         cout << "Generated Password: " << generatedPassword << endl;
