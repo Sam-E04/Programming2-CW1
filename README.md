@@ -45,6 +45,15 @@ Programming2-CW1/
 + Generates secure random passwords 
 + Fast password lookup using a retrieve password function
 
+### Functions
+
++ genPass
++ storePass
++ retrievePass
++ encryptPass
++ decryptPass
++ getNum
+
 
 ## Made By:
 
